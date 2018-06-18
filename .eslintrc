@@ -1,0 +1,6 @@
+{
+  "extends": ["react-airbnb-prettier"],
+  "rules":{
+    "linebreak-style": 0
+  }
+}
