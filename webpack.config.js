@@ -12,8 +12,19 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ["env", "stage-0", "react"],
+                        code: true,
+                        comments: true,
+                        cacheDirectory: true,
+                        babelrc: false,
+                    },
                 }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.scss$/,

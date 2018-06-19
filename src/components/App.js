@@ -1,5 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux'
+import * as actions from '../actions'
+import TableComponent from './TableComponent/TableComponent'
 
-const App = () => <div>Hello React!</div>;
+class App extends Component {
+    render(){
+        return (
+          <div>
+            <TableComponent />
+          </div>
+        )
+    }
+}
 
-export default App;
+export default connect(null, actions)(App);
