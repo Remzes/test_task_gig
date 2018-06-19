@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ReactTable from 'react-table'
 import {connect} from 'react-redux'
 import * as actions from '../../actions'
+import {pokemonsFilter} from '../../selectors'
 
 const columns = [{
     Header: 'Name',
@@ -29,6 +30,7 @@ class TableComponent extends Component {
 
     render() {
         const {fetched, data} = this.props.pokemons;
+        console.log(this.props.pokemons)
         if (fetched) {
             return (
               <div>
@@ -41,4 +43,4 @@ class TableComponent extends Component {
     }
 }
 
-export default connect(({pokemons, filters}) => ({pokemons, filters}), actions)(TableComponent)
+export default connect((state) => ({pokemons: pokemonsFilter(state)}), actions)(TableComponent)
