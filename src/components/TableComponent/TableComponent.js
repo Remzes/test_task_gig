@@ -13,18 +13,11 @@ const columns = [{
 }];
 
 class TableComponent extends Component {
-    state = {
-        searchBoxValue: ""
-    };
-
     componentWillMount() {
-        this.props.fetchPokemons()
+       this.props.fetchPokemons()
     }
 
     searchBox = ev => {
-        this.setState({
-            searchBoxValue: ev.target.value
-        });
         this.props.searchPokemons(ev.target.value)
     }
 
@@ -33,7 +26,7 @@ class TableComponent extends Component {
         if (fetched) {
             return (
               <div>
-                <input value={this.state.searchBoxValue} onChange={this.searchBox} />
+                <input value={this.props.searchBoxValue} onChange={this.searchBox} />
                 <ReactTable data={data} columns={columns} />
               </div>
             )
@@ -42,4 +35,7 @@ class TableComponent extends Component {
     }
 }
 
-export default connect((state) => ({pokemons: pokemonsFilterSelector(state)}), actions)(TableComponent)
+export default connect((state) => ({
+    searchBoxValue: state.filters.searchBoxValue,
+    pokemons: pokemonsFilterSelector(state)
+}), actions)(TableComponent)
