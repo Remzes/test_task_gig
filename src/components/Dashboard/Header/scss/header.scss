@@ -1,0 +1,25 @@
+.header {
+  &__inner {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: $header_bgc;
+
+    &__logo {
+      height: 75px;
+
+      @include for_phone {
+        display: none
+      }
+    }
+
+    &__title {
+      font-family: 'Montserrat', sans-serif;
+      color: $header_title_color;
+
+      @include for_phone {
+        font-size: 1.3em
+      }
+    }
+  }
+}

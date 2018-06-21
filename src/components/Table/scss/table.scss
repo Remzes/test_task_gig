@@ -1,0 +1,56 @@
+.poketable {
+  padding: 30px;
+  width: 80%;
+  margin: 0 auto;
+  &__inner {
+    &__table-wrapper {
+      &__table {
+        padding: 20px;
+        margin: 0 auto;
+        .rt-tbody {
+          overflow-x: hidden !important;
+        }
+
+        .rt-th {
+          background-color: #000;
+          border-right: 2px solid #fff !important;
+          padding: 10px 0 !important;
+        }
+
+        .rt-th:last-of-type {
+          border-right: 0 !important;
+        }
+        
+        .table-header {
+          color: #fff;
+          font-weight: bold;
+          font-size: 18px;
+          background-color: #000;
+
+        }
+
+        .poketable_column {
+          display: flex;
+          align-items: center;
+          white-space: normal;
+          overflow: visible;
+
+          section {
+            @extend .poketable_column;
+            margin-left: 20px;
+            padding: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 17px;
+
+            .color_demo {
+              height: 30px;
+              width: 30px;
+              box-shadow: 0 0 2px #000;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

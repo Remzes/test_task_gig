@@ -1,0 +1,20 @@
+$width_tablet: 768px;
+$width_desktop: 1024px;
+
+@mixin for_phone {
+  @media (max-width: #{$width_tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin for_tablet {
+  @media (min-width: #{$width_tablet}) and (max-width: #{$width_desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin for_desktop {
+  @media (min-width: #{$width_desktop}) {
+    @content;
+  }
+}

@@ -1,0 +1,13 @@
+.divider {
+  clear: both;
+  height: 1px;
+  background-color: $divider_color;
+  width: 450px;
+  margin: 60px auto 30px;
+  @include for_tablet {
+    margin: 40px auto 20px;
+  }
+  @include for_phone {
+    width: 300px;
+  }
+}

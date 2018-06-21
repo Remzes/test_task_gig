@@ -1,0 +1,38 @@
+.jumbotron {
+  &__inner {
+    background: url('https://i.pinimg.com/originals/f5/05/f5/f505f5040274b97cd5114f9ff3ab8b99.jpg') center center;
+    background-size: cover;
+    height: 500px;
+    display: table;
+    width: 100%;
+
+    &__centralized {
+      width: 80%;
+      margin: 0 auto;
+      display: table-cell;
+      vertical-align: middle;
+      background-color: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      &__title {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        font-size: 60px;
+        color: $jumbrotron_title_color;
+        @include for_phone {
+          font-size: 40px;
+        }
+      }
+
+      &__p {
+        font-size: 20px;
+        color: $jumbrotron_p_color;
+        font-family: 'Open Sans', sans-serif;
+        width: 80%;
+        margin: 10px auto 10px;
+        @include for_phone {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

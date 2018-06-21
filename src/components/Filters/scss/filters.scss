@@ -1,0 +1,47 @@
+.filters {
+  padding: 10px;
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include for_desktop {
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    .select-box {
+      flex-basis: 40%;
+      order: 2;
+      @include for_desktop {
+        order: 1;
+      }
+    }
+
+    .search-box {
+      height: 100%;
+      text-align: center;
+      order: 1;
+      margin-bottom: 20px;
+      @include for_desktop {
+        order: 2
+      }
+
+      input {
+        outline: 0;
+        border: 0;
+        border-bottom: 3px solid #aaa;
+        background-color: transparent;
+        line-height: 34px;
+        height: 34px;
+        padding: 0 10px;
+        border-radius: 3px;
+        transition: border-bottom .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        &:focus {
+          border-bottom: 3px solid #000;
+          box-shadow: 0 8px 6px -6px #000;
+        }
+      }
+    }
+  }
+}
