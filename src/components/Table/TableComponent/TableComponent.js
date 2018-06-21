@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactTable from 'react-table'
-import Loader from '../../Loader/Loader'
+import withLoader from '../../../decorators/withLoader'
+import Filters from '../../Filters/Filters'
+import ProgressBar from '../../ProgressBar/ProgressBar'
 import {capitalizeWord} from '../../../utils'
 
 const columns = [{
@@ -10,11 +12,11 @@ const columns = [{
   id: 'name',
   className: 'poketable_column name-column',
   minWidth: 250,
-  accessor: data => data.sprite + ', ' + capitalizeWord(data.name),
+  accessor: data => capitalizeWord(data.name) + ', ' + data.sprite,
   Cell: row => (
     <section>
-      <img src={row.value.split(',')[0]} alt={`${row.value.split(',')}'s avatar`}/>
-      <span>{row.value.split(',')[1]}</span>
+      <img src={row.value.split(',')[1]} alt={`${row.value.split(',')}'s avatar`}/>
+      <span>{row.value.split(',')[0]}</span>
     </section>
   )
 }, {
@@ -60,8 +62,10 @@ const columns = [{
     Cell: row => <section>{row.value}</section>
   }];
 
-const TableComponent = ({data, fetched}) => (
-  fetched ?
+const TableComponent = ({data, fetched, progress}) => (
+  <section>
+    <Filters types={data.map(pokemon => pokemon.types)} />
+    <ProgressBar progress={progress} />
     <ReactTable
       data={data}
       columns={columns}
@@ -71,10 +75,7 @@ const TableComponent = ({data, fetched}) => (
         backgroundColor: "#fff"
       }}
     />
-    :
-    <div>
-      <Loader />
-    </div>
+  </section>
 );
 
-export default TableComponent
+export default withLoader(TableComponent)

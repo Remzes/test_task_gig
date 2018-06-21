@@ -2,7 +2,7 @@ import axios from 'axios'
 import _ from 'lodash';
 import {localStorageReduxStore} from "../constants/"
 
-const limit = 4;
+const limit = 10;
 const step = 2;
 
 const fetchPokemonsResourceList = async () => {
@@ -43,7 +43,7 @@ export const fetchPokemons = () => async dispatch => {
 
           pokemons.length === limit
           ? dispatch({type: 'FETCH_POKEMONS_FULFILLED', payload: {pokemons, progress: 100}})
-          : dispatch({type: 'FETCH_POKEMONS_FULFILLING', payload: {pokemons, progress: limit / pokemons.length}});
+          : dispatch({type: 'FETCH_POKEMONS_FULFILLING', payload: {pokemons, progress: 100 / (limit / pokemons.length)}});
         }, step * 100)
       }
     }
@@ -63,4 +63,8 @@ export const storedBoxValue = word => dispatch => {
 
 export const selectTypes = types => dispatch => {
   dispatch({type: 'FILTER_BY_TYPE', payload: types})
+};
+
+export const toggleDashboard = () => dispatch => {
+  dispatch({type: 'TOGGLE_DASHBOARD'})
 };

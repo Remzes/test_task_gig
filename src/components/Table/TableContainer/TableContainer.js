@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import * as actions from '../../../actions/index'
 import {pokemonsFilterSelector} from '../../../selectors/index'
 import TableComponent from '../TableComponent/TableComponent'
-import Filters from '../../Filters/Filters'
-import {ProgressBar} from '../../ProgressBar/ProgressBar'
+import ChartsContainer from '../../Statistics/ChartsContainer'
 
 class TableContainer extends Component {
 
@@ -12,15 +11,24 @@ class TableContainer extends Component {
     this.props.fetchPokemons();
   }
 
+  toggleStyle = () => ({transform: this.props.toggle ? 'rotateY(-180deg)' : 'none'});
+
   render() {
-    const {fetched, data} = this.props.pokemons;
+    const {fetched, data, progress} = this.props.pokemons;
     return (
       <section className="poketable">
         <section className="poketable__inner">
           <section className="poketable__inner__table-wrapper">
-            <ProgressBar />
-            <Filters types={data.map(pokemon => pokemon.types)} />
-            <TableComponent data={data} fetched={fetched} />
+            <section className="flip_flop-wrapper">
+              <section className="flip_flop-wrapper__flip_flop" style={this.toggleStyle()}>
+                <section className="flip_flop-wrapper__flip_flop__front_side">
+                  <TableComponent data={data} fetched={fetched} progress={progress} />
+                </section>
+                <section className="flip_flop-wrapper__flip_flop__back_side">
+                  <ChartsContainer data={data} fetched={fetched} />
+                </section>
+              </section>
+            </section>
           </section>
         </section>
       </section>

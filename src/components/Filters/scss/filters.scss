@@ -42,6 +42,17 @@
           box-shadow: 0 8px 6px -6px #000;
         }
       }
+
+      button {
+        background-color: black;
+        color: white;
+        padding: 5px 10px;
+        border: 0;
+        margin-left: 10px;
+        @include for_phone {
+          margin-top: 10px;
+        }
+      }
     }
   }
 }

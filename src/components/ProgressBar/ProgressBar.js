@@ -1,9 +1,11 @@
 import React from 'react'
 
-const ProgressBar = () => (
-  <section className="progress-bar-container">
-    <section className="progress-bar" />
-  </section>
-);
+const ProgressBar = ({progress}) => {
+  return (
+    <section className="progress-bar-container" style={{visibility: progress === 100 ? 'hidden' : 'visible' }}>
+      <section className="progress-bar" style={{width: progress + '%'}} />
+    </section>
+  )
+};
 
-export default ProgressBar;
+export default ProgressBar

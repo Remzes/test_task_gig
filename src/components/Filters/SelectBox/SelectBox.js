@@ -17,7 +17,7 @@ class SelectBox extends Component {
     }));
     return (
       <section className="select-box">
-        <Select autosize={false} options={uniqTypes} value={filterTypes} onChange={this.handleTypesSelect} multi />
+        <Select autosize={false} options={uniqTypes} placeholder='Select the types...' value={filterTypes} onChange={this.handleTypesSelect} multi />
       </section>
     )
   }

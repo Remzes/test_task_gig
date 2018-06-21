@@ -30,7 +30,7 @@ export default (state = initialState, action) => {
         fetched: true,
         fulfilled: false,
         data: payload.pokemons,
-        progress: payload.progressData
+        progress: payload.progress
       };
     case FETCH_POKEMONS_FULFILLED:
       return {
@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
         fetched: true,
         fulfilled: true,
         data: payload.pokemons,
-        progress: payload.progressData
+        progress: payload.progress
       };
     default:
       return state;

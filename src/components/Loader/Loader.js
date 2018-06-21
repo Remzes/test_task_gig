@@ -1,8 +1,7 @@
 import React from 'react'
 
 const Loader = () => (
-  <section className="loader">
-  </section>
+  <section className="loader" />
 )
 
 export default Loader
