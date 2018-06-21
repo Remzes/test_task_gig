@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import  React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import * as actions from '../../../actions/index'
@@ -15,7 +15,6 @@ class TableContainer extends Component {
   toggleStyle = () => (this.props.toggle ? 'rotateY(-180deg)' : 'none');
 
   render() {
-    console.log(this.props)
     const {fetched, data, progress} = this.props.pokemons;
     return (
       <section className="poketable">

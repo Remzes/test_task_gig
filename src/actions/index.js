@@ -48,7 +48,6 @@ export const fetchPokemons = () => async dispatch => {
       }
     }
   } catch (e) {
-    console.log(e)
     dispatch({type: 'FETCH_POKEMONS_REJECTED', payload: e})
   }
 };

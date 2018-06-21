@@ -8,7 +8,7 @@ import 'normalize.css'
 
 import store from './store'
 import App from './components/App'
-import './scss/App.scss'
+import './assets/styles/scss/App.scss'
 
 render(
   <Provider store={store}>

@@ -13,8 +13,8 @@ describe('<App />', () => {
   });
 
   it('renders props in a right way', () => {
-    const component = shallow(<App name="name" />);
-    expect(component.instance().props.name).toBe('name');
+    const component = shallow(<App />).dive();
+    expect(component.props.name).toEqual('name');
   });
 });
 
@@ -32,9 +32,5 @@ describe('App supports passing the store directly', () => {
 
   it('renders connected component', () => {
     expect(container.length).toEqual(1)
-  });
-
-  it('checks whether props match with state', () => {
-    expect(container.prop("data")).toEqual(initialState.data)
   });
 })
