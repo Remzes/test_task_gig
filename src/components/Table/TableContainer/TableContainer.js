@@ -12,7 +12,7 @@ class TableContainer extends Component {
     this.props.fetchPokemons();
   }
 
-  toggleStyle = () => ({transform: this.props.toggle ? 'rotateY(-180deg)' : 'none'});
+  toggleStyle = () => (this.props.toggle ? 'rotateY(-180deg)' : 'none');
 
   render() {
     console.log(this.props)
@@ -22,7 +22,7 @@ class TableContainer extends Component {
         <section className="poketable__inner">
           <section className="poketable__inner__table-wrapper">
             <section className="flip_flop-wrapper">
-              <section className="flip_flop-wrapper__flip_flop" style={this.toggleStyle()}>
+              <section className="flip_flop-wrapper__flip_flop" style={{transform: this.toggleStyle()}}>
                 <section className="flip_flop-wrapper__flip_flop__front_side">
                   <TableComponent data={data} fetched={fetched} progress={progress} />
                 </section>

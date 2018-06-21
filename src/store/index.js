@@ -14,5 +14,4 @@ const store = createStore(reducer, {}, middleware);
 const load = storage.createLoader(engine);
 load(store);
 
-window.store = store;
 export default store
