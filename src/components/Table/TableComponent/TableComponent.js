@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactTable from 'react-table'
+import PropTypes from 'prop-types'
 import withLoader from '../../../decorators/withLoader'
 import Filters from '../../Filters/Filters'
 import ProgressBar from '../../ProgressBar/ProgressBar'
@@ -77,5 +78,11 @@ const TableComponent = ({data, fetched, progress}) => (
     />
   </section>
 );
+
+TableComponent.propTypes = {
+  data: PropTypes.array.isRequired,
+  fetched: PropTypes.bool.isRequired,
+  progress: PropTypes.number.isRequired
+};
 
 export default withLoader(TableComponent)

@@ -2,8 +2,10 @@ import React from 'react';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
+import PropTypes from 'prop-types';
 import {renderDataForPieChart} from '../../../utils/charts/renderDataForPieChart'
-ReactFC.fcRoot(FusionCharts, Charts)
+
+ReactFC.fcRoot(FusionCharts, Charts);
 
 const PieChart = ({data}) => {
 
@@ -40,6 +42,10 @@ const PieChart = ({data}) => {
       <ReactFC {...renderChart()} />
     </section>
   )
+};
+
+PieChart.propTypes = {
+  data: PropTypes.array.isRequired
 };
 
 export default PieChart

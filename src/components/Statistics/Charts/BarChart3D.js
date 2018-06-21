@@ -1,8 +1,10 @@
-import React from 'react';
-import FusionCharts from 'fusioncharts';
-import Charts from 'fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusioncharts';
-import {renderDataForBarChart} from "../../../utils/charts/renderDataForBarChart";
+import React from 'react'
+import FusionCharts from 'fusioncharts'
+import Charts from 'fusioncharts/fusioncharts.charts'
+import ReactFC from 'react-fusioncharts'
+import PropTypes from 'prop-types'
+import {renderDataForBarChart} from "../../../utils/charts/renderDataForBarChart"
+
 ReactFC.fcRoot(FusionCharts, Charts);
 
 const BarChart = ({data}) => {
@@ -54,6 +56,10 @@ const BarChart = ({data}) => {
       <ReactFC {...renderChart()} />
     </section>
   )
+};
+
+BarChart.propTypes = {
+  data: PropTypes.array.isRequired
 };
 
 export default BarChart

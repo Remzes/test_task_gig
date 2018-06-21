@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import * as actions from '../../../actions/index'
 import {pokemonsFilterSelector} from '../../../selectors/index'
 import TableComponent from '../TableComponent/TableComponent'
@@ -14,6 +15,7 @@ class TableContainer extends Component {
   toggleStyle = () => ({transform: this.props.toggle ? 'rotateY(-180deg)' : 'none'});
 
   render() {
+    console.log(this.props)
     const {fetched, data, progress} = this.props.pokemons;
     return (
       <section className="poketable">
@@ -34,6 +36,17 @@ class TableContainer extends Component {
       </section>
     )
   }
+}
+
+TableContainer.propTypes = {
+  fetchPokemons: PropTypes.func.isRequired,
+  pokemons: PropTypes.object.isRequired,
+  searchBoxValue: PropTypes.string.isRequired,
+  searchPokemons: PropTypes.func.isRequired,
+  selectTypes: PropTypes.func.isRequired,
+  selectBoxValue: PropTypes.string,
+  toggle: PropTypes.bool.isRequired,
+  toggleDashboard: PropTypes.func.isRequired
 }
 
 export default connect((state) => ({

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import SearchBox from './SearchBox/SearchBox'
 import SelectBox from './SelectBox/SelectBox'
 
@@ -10,5 +11,9 @@ const Filters = ({types}) => (
     </section>
   </section>
 );
+
+Filters.propTypes = {
+  types: PropTypes.array.isRequired
+};
 
 export default Filters

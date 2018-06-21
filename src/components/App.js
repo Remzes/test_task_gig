@@ -1,12 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux'
-import * as actions from '../actions'
+import {HashRouter, Route} from 'react-router-dom';
 import Dashboard from './Dashboard/Dashboard'
 
 const App = () => (
   <div>
-    <Dashboard />
+    <HashRouter>
+      <Route exact path="/" component={Dashboard} />
+    </HashRouter>
   </div>
 );
 
-export default connect(null, actions)(App);
+export default App;
