@@ -12,23 +12,23 @@ class TableContainer extends Component {
     this.props.fetchPokemons();
   }
 
-  toggleWrapperStyle = () => {
-    return this.props.toggle
+  toggleWrapperStyle = () => (
+    this.props.toggle
       ? {transform: 'rotateY(-180deg)'}
       : {transform: 'rotateY(0deg)'}
-  };
+  );
 
-  toggleFrontSideStyle = () => {
-    return this.props.toggle
-    ? {opacity: 0, }
-    : {opacity: 1, }
-  };
+  toggleFrontSideStyle = () => (
+    this.props.toggle
+      ? {opacity: 0,}
+      : {opacity: 1,}
+  );
 
-  toggleBackSideStyle = () => {
-    return this.props.toggle
+  toggleBackSideStyle = () => (
+    this.props.toggle
       ? {opacity: 1, backfaceVisibility: 'visible'}
       : {opacity: 0, backfaceVisibility: 'hidden'}
-  };
+  );
 
   render() {
     const {fetched, data, progress} = this.props.pokemons;

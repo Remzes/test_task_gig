@@ -5,12 +5,14 @@
     padding: 10px;
     background-color: $header_bgc;
 
+    &__logo-wrapper {
+      @include for_phone {
+        display: none;
+      }
+    }
+
     &__logo {
       height: 75px;
-
-      @include for_phone {
-        display: none
-      }
     }
 
     &__title {

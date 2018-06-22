@@ -5,6 +5,7 @@ import withLoader from '../../../decorators/withLoader'
 import Filters from '../../Filters/Filters'
 import ProgressBar from '../../ProgressBar/ProgressBar'
 import {capitalizeWord} from '../../../utils'
+import createPDF from '../../../utils/createPDF/createPDF'
 
 const columns = [{
   Header: () => (
@@ -21,7 +22,7 @@ const columns = [{
         <img src={row.original.sprite} alt={`${name}'s avatar`} />
         <p className="name-column__section__text">
           <span>{name}</span>
-          <a>(Download PDF)</a>
+          <a onClick={async () => {await createPDF(row.original)}}>(Download PDF)</a>
         </p>
       </section>
     )
@@ -78,7 +79,7 @@ const TableComponent = ({data, fetched, progress}) => (
       columns={columns}
       className="-striped -highlight poketable__inner__table-wrapper__table"
       style={{
-        height: '600px',
+        height: '700px',
         backgroundColor: "#fff"
       }}
     />

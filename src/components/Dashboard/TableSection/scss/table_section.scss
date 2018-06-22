@@ -1,11 +1,12 @@
 .table-section {
   background-color: $poketable_bgc;
   &__inner {
+    @include clearfix;
     &__title {
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       text-align: center;
-      padding: 30px 0 25px;
+      padding: 20px 0 15px;
       font-size: 40px;
     }
 

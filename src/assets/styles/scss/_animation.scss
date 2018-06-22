@@ -1,0 +1,26 @@
+.fade_in_long-appear {
+  opacity: 0.01;
+}
+
+.fade_in_long-appear.fade_in_long-appear-active {
+  opacity: 1;
+  transition: opacity .75s ease-in;
+}
+
+.fade_in_medium-appear {
+  opacity: 0.01;
+}
+
+.fade_in_medium-appear.fade_in_medium-appear-active {
+  opacity: 1;
+  transition: opacity .75s ease-in;
+}
+
+.fade_in_short-appear {
+  opacity: 0.01;
+}
+
+.fade_in_short-appear.fade_in_short-appear-active {
+  opacity: 1;
+  transition: opacity .75s ease-in;
+}

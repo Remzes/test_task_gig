@@ -3,6 +3,9 @@
   perspective: 3000px;
   width: 100%;
   height: 800px;
+  @include for_phone {
+    height: 850px
+  }
 
   &__flip_flop {
     transition: 1s;
@@ -16,6 +19,9 @@
       position: absolute;
       top: 0;
       left: 0;
+      @include for_phone {
+        height: 850px
+      }
     }
 
     &__front_side {

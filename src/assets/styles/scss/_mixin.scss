@@ -18,3 +18,11 @@ $width_desktop: 1024px;
     @content;
   }
 }
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

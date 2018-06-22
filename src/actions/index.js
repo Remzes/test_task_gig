@@ -1,25 +1,28 @@
 import axios from 'axios'
 import _ from 'lodash';
 import {localStorageReduxStore} from "../constants/"
-import {loadImage} from '../utils/toBase64/toBase64'
+import {loadImage} from "../utils/toBase64/toBase64"
 
-let limit = 5;
+let limit = 10;
 let offset = 0;
-const step = 1;
+const step = 5;
 let iterate = 1;
 
 const fetchPokemonsResourceList = async () => {
-  console.log(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
   const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
   return res
 };
 
 const transformPokemonObject = async (object) => {
   const {data} = await axios.get(object.species.url);
-  const image = await loadImage(object.sprites.front_default);
+  const image = object.sprites.front_default;
+  const backImage = object.sprites.back_default;
   return {
     name: object.name,
     sprite: image,
+    back_sprite: backImage,
+    height: object.weight,
+    weight: object.height,
     types: object.types.map(it => it.type.name),
     abilities: object.abilities.map(el => el.ability.name),
     species: object.species.name,
@@ -38,11 +41,9 @@ export const fetchPokemons = () => async dispatch => {
         if (parsedInfo.pokemons !== undefined && parsedInfo.pokemons !== null) {
           offset = parsedInfo.pokemons.data.length
           limit -= offset
-          console.log(limit, offset)
         }
       }
       const rl = await fetchPokemonsResourceList();
-      console.log(rl)
       let pokemons = []
 
       dispatch({type: 'FETCH_POKEMONS_PENDING'});
