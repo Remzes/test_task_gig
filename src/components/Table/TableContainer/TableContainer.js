@@ -31,7 +31,7 @@ class TableContainer extends Component {
   );
 
   render() {
-    const {fetched, data, progress} = this.props.pokemons;
+    const {fetched, data, error, progress} = this.props.pokemons;
     return (
       <section className="poketable">
         <section className="poketable__inner">
@@ -39,7 +39,7 @@ class TableContainer extends Component {
             <section className="flip_flop-wrapper">
               <section className="flip_flop-wrapper__flip_flop" style={this.toggleWrapperStyle()}>
                 <section className="flip_flop-wrapper__flip_flop__front_side" style={this.toggleFrontSideStyle()}>
-                  <TableComponent data={data} fetched={fetched} progress={progress} />
+                  <TableComponent data={data} fetched={fetched} isError={error !== null && error !== undefined} progress={progress} />
                 </section>
                 <section className="flip_flop-wrapper__flip_flop__back_side" style={this.toggleBackSideStyle()}>
                   <ChartsContainer data={data} fetched={fetched} />

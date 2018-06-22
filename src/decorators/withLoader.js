@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Loader from '../components/Loader/Loader'
+import ErrorHolder from '../components/ErrorHolder/ErrorHolder';
 
 export default (OriginalComponent) => class WrappedComponent extends Component {
 
@@ -9,7 +10,13 @@ export default (OriginalComponent) => class WrappedComponent extends Component {
      : <Loader />
   );
 
+  renderLogic = () => (
+    this.props.isError
+    ? <ErrorHolder />
+    : this.renderComponent()
+  );
+
   render(){
-    return this.renderComponent()
+    return this.renderLogic()
   }
 }

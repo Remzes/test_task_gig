@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {localStorageReduxStore} from "../constants/"
 import {loadImage} from "../utils/toBase64/toBase64"
 
-let limit = 10;
+let limit = 50;
 let offset = 0;
 const step = 5;
 let iterate = 1;
@@ -15,8 +15,8 @@ const fetchPokemonsResourceList = async () => {
 
 const transformPokemonObject = async (object) => {
   const {data} = await axios.get(object.species.url);
-  const image = object.sprites.front_default;
-  const backImage = object.sprites.back_default;
+  const image = await loadImage(object.sprites.front_default);
+  const backImage = await loadImage(object.sprites.back_default);
   return {
     name: object.name,
     sprite: image,

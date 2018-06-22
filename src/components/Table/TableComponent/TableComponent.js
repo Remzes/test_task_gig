@@ -70,7 +70,7 @@ const columns = [{
     Cell: row => <section>{row.value}</section>
   }];
 
-const TableComponent = ({data, fetched, progress}) => (
+const TableComponent = ({data, fetched, error, progress}) => (
   <section>
     <Filters types={data.map(pokemon => pokemon.types)} />
     <ProgressBar progress={progress} />
@@ -89,6 +89,7 @@ const TableComponent = ({data, fetched, progress}) => (
 TableComponent.propTypes = {
   data: PropTypes.array.isRequired,
   fetched: PropTypes.bool.isRequired,
+  isError: PropTypes.bool,
   progress: PropTypes.number.isRequired
 };
 
