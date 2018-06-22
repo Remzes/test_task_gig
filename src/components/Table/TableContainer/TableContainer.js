@@ -1,4 +1,4 @@
-import  React, {Component} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import * as actions from '../../../actions/index'
@@ -12,7 +12,23 @@ class TableContainer extends Component {
     this.props.fetchPokemons();
   }
 
-  toggleStyle = () => (this.props.toggle ? 'rotateY(-180deg)' : 'none');
+  toggleWrapperStyle = () => {
+    return this.props.toggle
+      ? {transform: 'rotateY(-180deg)'}
+      : {transform: 'rotateY(0deg)'}
+  };
+
+  toggleFrontSideStyle = () => {
+    return this.props.toggle
+    ? {opacity: 0, }
+    : {opacity: 1, }
+  };
+
+  toggleBackSideStyle = () => {
+    return this.props.toggle
+      ? {opacity: 1, backfaceVisibility: 'visible'}
+      : {opacity: 0, backfaceVisibility: 'hidden'}
+  };
 
   render() {
     const {fetched, data, progress} = this.props.pokemons;
@@ -21,11 +37,11 @@ class TableContainer extends Component {
         <section className="poketable__inner">
           <section className="poketable__inner__table-wrapper">
             <section className="flip_flop-wrapper">
-              <section className="flip_flop-wrapper__flip_flop" style={{transform: this.toggleStyle()}}>
-                <section className="flip_flop-wrapper__flip_flop__front_side">
+              <section className="flip_flop-wrapper__flip_flop" style={this.toggleWrapperStyle()}>
+                <section className="flip_flop-wrapper__flip_flop__front_side" style={this.toggleFrontSideStyle()}>
                   <TableComponent data={data} fetched={fetched} progress={progress} />
                 </section>
-                <section className="flip_flop-wrapper__flip_flop__back_side">
+                <section className="flip_flop-wrapper__flip_flop__back_side" style={this.toggleBackSideStyle()}>
                   <ChartsContainer data={data} fetched={fetched} />
                 </section>
               </section>

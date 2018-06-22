@@ -1,3 +1,5 @@
+import {LOAD, SAVE} from 'redux-storage'
+import _ from 'lodash'
 import {
   FETCH_POKEMONS_PENDING,
   FETCH_POKEMONS_REJECTED,
@@ -18,28 +20,29 @@ const initialState = {
 export default (state = initialState, action) => {
   const {type, payload} = action;
   switch (type) {
+    case LOAD:
+      return {...state, ...payload}
+    case SAVE:
+      return {...state, ...payload}
     case FETCH_POKEMONS_PENDING:
-      return {...state, dataCached: false, fetching: true, fulfilled: false, progress: 0};
+      return {...state, fetching: true};
     case FETCH_POKEMONS_REJECTED:
-      return {...state, dataCached: false, fetching: false, fulfilled: false, progress: 0, error: payload};
+      return {...state, error: payload};
     case FETCH_POKEMONS_FULFILLING:
       return {
         ...state,
-        dataCached: false,
         fetching: false,
         fetched: true,
-        fulfilled: false,
-        data: payload.pokemons,
-        progress: payload.progress
+        progress: payload.progress,
+        data: _.union(state.data, payload.pokemons)
       };
     case FETCH_POKEMONS_FULFILLED:
       return {
         ...state,
-        dataCached: false,
-        fetching: false,
         fetched: true,
+        fetching: false,
         fulfilled: true,
-        data: payload.pokemons,
+        data: _.union(state.data, payload.pokemons),
         progress: payload.progress
       };
     default:

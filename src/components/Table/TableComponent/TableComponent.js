@@ -12,14 +12,20 @@ const columns = [{
   ),
   id: 'name',
   className: 'poketable_column name-column',
-  minWidth: 250,
-  accessor: data => capitalizeWord(data.name) + ', ' + data.sprite,
-  Cell: row => (
-    <section>
-      <img src={row.value.split(',')[1]} alt={`${row.value.split(',')}'s avatar`}/>
-      <span>{row.value.split(',')[0]}</span>
-    </section>
-  )
+  minWidth: 300,
+  accessor: data => capitalizeWord(data.name),
+  Cell: row => {
+    const name = row.value;
+    return (
+      <section className="name-column__section">
+        <img src={row.original.sprite} alt={`${name}'s avatar`} />
+        <p className="name-column__section__text">
+          <span>{name}</span>
+          <a>(Download PDF)</a>
+        </p>
+      </section>
+    )
+  }
 }, {
   Header: () => (
     <span className="table-header">Color</span>

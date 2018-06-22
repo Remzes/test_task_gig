@@ -1,29 +1,26 @@
 .filters {
-  padding: 10px;
   &__inner {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    @include for_desktop {
-      flex-direction: row;
-      justify-content: space-around;
+    justify-content: space-between;
+    @include for_phone {
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .select-box {
       flex-basis: 40%;
       order: 2;
-      @include for_desktop {
-        order: 1;
-      }
     }
 
     .search-box {
       height: 100%;
       text-align: center;
-      order: 1;
       margin-bottom: 20px;
+      @include for_tablet {
+        margin-bottom: 10px;
+      }
       @include for_desktop {
-        order: 2
+        margin-bottom: 10px;
       }
 
       input {

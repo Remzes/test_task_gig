@@ -20,7 +20,15 @@
         .rt-th:last-of-type {
           border-right: 0 !important;
         }
-        
+
+        .rt-thead .rt-th.-sort-asc, .rt-thead .rt-td.-sort-asc {
+          box-shadow: inset 0 3px 0 0 red !important;
+        }
+
+        .rt-thead .rt-th.-sort-desc, .rt-thead .rt-td.-sort-desc {
+          box-shadow: inset 0 -3px 0 0 red !important;
+        }
+
         .table-header {
           color: #fff;
           font-weight: bold;
@@ -47,6 +55,24 @@
               width: 30px;
               box-shadow: 0 0 2px #000;
               margin-right: 10px;
+            }
+          }
+
+          .name-column {
+            &__section {
+              &__text {
+                margin-left: 10px;
+                span {
+                  display: block;
+                  clear: both
+                }
+                a {
+                  text-decoration: underline;
+                  color: #3366BB;
+                  cursor: pointer;
+                  font-size: 13px;
+                }
+              }
             }
           }
         }

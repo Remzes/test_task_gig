@@ -12,7 +12,7 @@ import './assets/styles/scss/App.scss'
 
 render(
   <Provider store={store}>
-    <App />
+    <App/>
   </Provider>
-  ,document.getElementById("index")
+  , document.getElementById("index")
 );

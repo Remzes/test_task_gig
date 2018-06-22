@@ -8,7 +8,7 @@ import {localStorageReduxStore} from '../constants'
 const engine = createEngine(localStorageReduxStore);
 const engineMiddleware = storage.createMiddleware(engine);
 
-const middleware = applyMiddleware(engineMiddleware, reduxThunk);
+const middleware = applyMiddleware( reduxThunk, engineMiddleware);
 const store = createStore(reducer, {}, middleware);
 
 const load = storage.createLoader(engine);

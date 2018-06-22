@@ -1,20 +1,25 @@
 import axios from 'axios'
 import _ from 'lodash';
 import {localStorageReduxStore} from "../constants/"
+import {loadImage} from '../utils/toBase64/toBase64'
 
-const limit = 10;
-const step = 2;
+let limit = 5;
+let offset = 0;
+const step = 1;
+let iterate = 1;
 
 const fetchPokemonsResourceList = async () => {
-  const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=0`);
+  console.log(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
+  const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`);
   return res
 };
 
 const transformPokemonObject = async (object) => {
   const {data} = await axios.get(object.species.url);
+  const image = await loadImage(object.sprites.front_default);
   return {
     name: object.name,
-    sprite: object.sprites.front_default,
+    sprite: image,
     types: object.types.map(it => it.type.name),
     abilities: object.abilities.map(el => el.ability.name),
     species: object.species.name,
@@ -27,8 +32,18 @@ export const fetchPokemons = () => async dispatch => {
   try {
     const info = localStorage.getItem(localStorageReduxStore);
     if (info === null || (info !== null && JSON.parse(info).pokemons.fulfilled === false)) {
+
+      if (info !== undefined && info !== null) {
+        const parsedInfo = JSON.parse(info);
+        if (parsedInfo.pokemons !== undefined && parsedInfo.pokemons !== null) {
+          offset = parsedInfo.pokemons.data.length
+          limit -= offset
+          console.log(limit, offset)
+        }
+      }
       const rl = await fetchPokemonsResourceList();
-      const pokemons = [];
+      console.log(rl)
+      let pokemons = []
 
       dispatch({type: 'FETCH_POKEMONS_PENDING'});
 
@@ -44,7 +59,8 @@ export const fetchPokemons = () => async dispatch => {
           pokemons.length === limit
           ? dispatch({type: 'FETCH_POKEMONS_FULFILLED', payload: {pokemons, progress: 100}})
           : dispatch({type: 'FETCH_POKEMONS_FULFILLING', payload: {pokemons, progress: 100 / (limit / pokemons.length)}});
-        }, step * 100)
+        }, iterate * 100);
+        iterate+=1
       }
     }
   } catch (e) {
